@@ -25,7 +25,12 @@ config :mushaf, MushafWeb.Endpoint,
   secret_key_base: "tkB7EBdawr35LTQuaZT8xAI8adV0QtHfPTlFUePKIt64brZEVBFy9d3EUnBITmaq",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    sass: {
+      DartSass,
+      :install_and_run,
+      [:default, ~w(--embed-source-map --source-map-urls=absolute --watch)]
+    }
   ]
 
 # ## SSL Support
