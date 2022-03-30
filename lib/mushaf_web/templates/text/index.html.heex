@@ -1,16 +1,17 @@
-<h1>Mushaf</h1>
-
-<div>
-  <div>
-    <p>
-      <%= @ayahs_right %>
-    </p>
-    <p><%= @page_right %></p>
-  </div>
-  <div>
-    <p>
-      <%= @ayahs_left %>
-    </p>
-    <p><%= @page_left %></p>
+<h1 class="title is-2 mx-auto">Mushaf</h1>
+<div class="mushaf-container">
+  <div class="mushaf-spread mx-auto">
+    <div class="mushaf-page">
+        <p>
+          <%= @ayahs_left %>
+        </p>
+        <p><%= @page_left %></p>
+    </div>
+    <div class="mushaf-page">
+        <p>
+          <%= @ayahs_right %>
+        </p>
+        <p><%= @page_right %></p>
+    </div>
   </div>
 </div>
