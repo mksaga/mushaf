@@ -6496,7 +6496,8 @@ defmodule Mushaf.Text do
   @uthmani_page_ayah_list [
     {1, 1, 1, 7},
     {2, 1, 2, 5},
-    {2, 6, 2, 16}
+    {2, 6, 2, 16},
+    {2, 17, 2, 24},
   ]
 
   defp full_text, do: @full_text
