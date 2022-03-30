@@ -1,5 +1,7 @@
 defmodule MushafWeb.TextController do
   use MushafWeb, :controller
+  require Integer
+
   alias Mushaf.Text
 
   def index(conn, _params) do
@@ -16,13 +18,23 @@ defmodule MushafWeb.TextController do
 
   def show_page(conn, %{"page_no" => page_no}) do
     {page_no_int, _} = Integer.parse(page_no)
-    ayahs = Text.get_page_ayahs(page_no_int)
-    # conn
-    # |> assign(:page_no, page_no_int)
-    # |> assign(:ayahs, ayahs)
-    # |> render(conn, "index.html")
-    render(conn, "index.html", page_no: page_no_int, ayahs: ayahs)
-    # render(conn, "index.html")
+    {ayahs_right, ayahs_left} = Text.get_spread_ayahs(page_no_int)
+
+    {page_right, page_left} =
+      if Integer.is_even(page_no_int) do
+        {page_no_int - 1, page_no_int}
+      else
+        {page_no_int, page_no_int + 1}
+      end
+
+    render(
+      conn,
+      "index.html",
+      page_right: page_right,
+      page_left: page_left,
+      ayahs_left: ayahs_left,
+      ayahs_right: ayahs_right,
+    )
   end
 
   def show(conn, %{"page_no" => page_no, "surah_no" => surah_no, "ayah_no" => ayah_no}) do
