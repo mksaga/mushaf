@@ -1,4 +1,6 @@
 defmodule Mushaf.Text do
+  require Integer
+
   @full_text [
   [
 	  {1, 1, "بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ"},
@@ -6436,6 +6438,7 @@ defmodule Mushaf.Text do
     {110, 2, "وَرَأَيْتَ النَّاسَ يَدْخُلُونَ فِي دِينِ اللَّهِ أَفْوَاجًا"},
     {110, 3, "فَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُ ۚ إِنَّهُ كَانَ تَوَّابًا"},
   ],
+  [
     {111, 1, "بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ تَبَّتْ يَدَا أَبِي لَهَبٍ وَتَبَّ"},
     {111, 2, "مَا أَغْنَىٰ عَنْهُ مَالُهُ وَمَا كَسَبَ"},
     {111, 3, "سَيَصْلَىٰ نَارًا ذَاتَ لَهَبٍ"},
@@ -6494,7 +6497,8 @@ defmodule Mushaf.Text do
   @uthmani_page_ayah_list [
     {1, 1, 1, 7},
     {2, 1, 2, 5},
-    {2, 6, 2, 16}
+    {2, 6, 2, 16},
+    {2, 17, 2, 24},
   ]
 
   defp full_text, do: @full_text
@@ -6516,6 +6520,15 @@ defmodule Mushaf.Text do
           start_surah + 1,
           0,
           (full_text()[start_surah - 1] |> Enum.slice(start_ayah_no, Enum.length(start_surah))) ++ ayah_list)
+    end
+  end
+
+  def get_spread_ayahs(page_no) do
+    page_even = Integer.is_even(page_no)
+    if page_even do
+      {get_page_ayahs(page_no - 1), get_page_ayahs(page_no)}
+    else
+      {get_page_ayahs(page_no), get_page_ayahs(page_no + 1)}
     end
   end
 
