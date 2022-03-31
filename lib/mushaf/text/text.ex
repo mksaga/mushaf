@@ -6532,13 +6532,38 @@ defmodule Mushaf.Text do
     end
   end
 
+  def arabicize_number(ayah_no) do
+    number_list = [
+      "٠",
+      "١",
+      "٢",
+      "٣",
+      "٤",
+      "٥",
+      "٦",
+      "٧",
+      "٨",
+      "٩",
+    ]
+    number_digits = Integer.digits(ayah_no)
+    Enum.join(Enum.map(number_digits, fn x -> Enum.at(number_list, x) end), "")
+  end
+
+  def clean_ayah(ayah) do
+    ayah_number = arabicize_number(elem(ayah, 1))
+    ayah_number_string = "۝ #{ayah_number}"
+    ayah_number_string1 = "(#{ayah_number})"
+    full_ayah = elem(ayah, 2) <> ayah_number_string1
+    put_elem(ayah, 2, full_ayah)
+  end
+
   def get_page_ayahs(page_no) do
     # page_no_int = Integer.parse(page_no)
     {start_surah, start_ayah_no, end_surah, end_ayah_no} = Enum.at(uthmani_page_ayah_list(), page_no - 1)
 
     # add up the ayahs!
     page_ayah_tuple_list = acc_page_ayahs(end_surah, end_ayah_no, start_surah, start_ayah_no, [])
-    page_ayah_list = Enum.map(page_ayah_tuple_list, fn x -> elem(x, 2) end)
+    page_ayah_list = Enum.map(page_ayah_tuple_list, fn x -> clean_ayah(x) end)
     page_ayah_list
   end
 end
