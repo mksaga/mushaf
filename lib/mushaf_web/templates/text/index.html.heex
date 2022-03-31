@@ -2,15 +2,23 @@
 <div class="mushaf-container">
   <div class="mushaf-spread mx-auto">
     <div class="mushaf-page">
-        <p class="quran-text">
-          <%= @ayahs_left %>
-        </p>
+        <div class="quran-text">
+          <%= for ayah <- @ayahs_left do %>
+            <p id={get_ayah_id(ayah)} class="ayah">
+              <%= get_ayah_text(ayah) %>
+            </p>
+          <% end %>
+        </div>
         <p class="has-text-centered mt-auto mb-2"><%= @page_left %></p>
     </div>
     <div class="mushaf-page">
-        <p class="quran-text">
-          <%= @ayahs_right %>
-        </p>
+        <div class="quran-text">
+          <%= for ayah <- @ayahs_right do %>
+            <p id={get_ayah_id(ayah)} class="ayah">
+              <%= get_ayah_text(ayah) %>
+            </p>
+          <% end %>
+        </div>
         <p class="has-text-centered mt-auto mb-2"><%= @page_right %></p>
     </div>
   </div>
