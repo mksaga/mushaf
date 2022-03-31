@@ -10,4 +10,12 @@ defmodule MushafWeb.TextView do
   def get_ayah_text(ayah) do
     elem(ayah, 2)
   end
+
+  def get_prev_page_no(page_no) do
+    max(1, page_no - 1)
+  end
+
+  def get_next_page_no(page_no) do
+    min(604, page_no + 1)
+  end
 end
