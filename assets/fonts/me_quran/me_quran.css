@@ -1,0 +1,7 @@
+@font-face {
+    font-family: 'ME Quran';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+         url('me_quran_regular.ttf') format('ttf'),
+  }
