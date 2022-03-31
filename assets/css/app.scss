@@ -56,6 +56,10 @@ h1 {
   direction: rtl;
 }
 
+.ayah {
+  display: inline;
+}
+
 @media screen and (min-width: 800px) {
   .mushaf-page {
     width: 45vw;
