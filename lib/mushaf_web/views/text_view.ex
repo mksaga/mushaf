@@ -12,6 +12,11 @@ defmodule MushafWeb.TextView do
     elem(ayah, 1) == 1
   end
 
+  def surah_starts_with_basmalah(ayah) do
+    surah_no = elem(ayah, 0)
+    surah_no != 9 and surah_no != 1
+  end
+
   def surah_title(ayah) do
     # TODO: use a map defined in Text context
     "سورة"
