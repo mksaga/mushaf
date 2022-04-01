@@ -6666,12 +6666,26 @@ defmodule Mushaf.Text do
   end
 
   def get_page_ayahs(page_no) do
-    # page_no_int = Integer.parse(page_no)
     {start_surah, start_ayah_no, end_surah, end_ayah_no} = Enum.at(uthmani_page_ayah_list(), page_no - 1)
 
     # add up the ayahs!
-    page_ayah_tuple_list = acc_page_ayahs(end_surah, end_ayah_no, start_surah, start_ayah_no, [])
-    page_ayah_list = Enum.map(page_ayah_tuple_list, fn x -> clean_ayah(x) end)
+    # returns a list of lists, each inner list is a surah
+    page_ayah_surahs_list_reverse = acc_page_ayahs(end_surah, end_ayah_no, start_surah, start_ayah_no, [])
+    page_ayah_surahs_list = Enum.reverse(page_ayah_surahs_list_reverse)
+
+    page_ayah_list = Enum.map(
+        # iterate over the list of lists
+        page_ayah_surahs_list,
+        fn surah_list ->
+          # iterate over ayahs in each surah
+          Enum.map(
+            surah_list,
+            fn ayah ->
+              clean_ayah(ayah)
+            end
+          )
+          end
+    )
     page_ayah_list
   end
 end
