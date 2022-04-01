@@ -30,6 +30,7 @@ defmodule MushafWeb.TextController do
     render(
       conn,
       "index.html",
+      page_no: page_no_int,
       page_right: page_right,
       page_left: page_left,
       ayahs_left: ayahs_left,

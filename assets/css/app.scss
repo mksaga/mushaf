@@ -33,6 +33,8 @@ h1 {
   height: 90vh;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .mushaf-page {
@@ -54,6 +56,10 @@ h1 {
   font-family: 'KFGQPC Uthman Taha Naskh';
   font-size: 1.5rem;
   direction: rtl;
+}
+
+.ayah {
+  display: inline;
 }
 
 @media screen and (min-width: 800px) {

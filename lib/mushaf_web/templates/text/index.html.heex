@@ -1,17 +1,60 @@
 <h1 class="title is-2 mx-auto">Mushaf</h1>
-<div class="mushaf-container">
+<div class="mushaf-container mx-auto">
   <div class="mushaf-spread mx-auto">
     <div class="mushaf-page">
-        <p class="quran-text">
-          <%= @ayahs_left %>
+        <div class="quran-text my-auto mr-2">
+          <%= for surah_list <- @ayahs_left do %>
+            <%= for ayah <- surah_list do %>
+              <%= if is_first_ayah(ayah) do %>
+                <p class="surah-heading">
+                  <strong>
+                  <%= surah_title(ayah) %>
+                  </strong>
+                </p>
+                <p class="basmalah">
+                  بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ
+                </p>
+                <p id={get_ayah_id(ayah)} class="ayah">
+                  <%= get_ayah_text(ayah) %>
+                </p>
+              <%= else %>
+                <p id={get_ayah_id(ayah)} class="ayah">
+                  <%= get_ayah_text(ayah) %>
+                </p>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        <p class="has-text-centered mt-auto mb-2">
+          <%= @page_left %>
         </p>
-        <p class="has-text-centered mt-auto mb-2"><%= @page_left %></p>
     </div>
     <div class="mushaf-page">
-        <p class="quran-text">
-          <%= @ayahs_right %>
+        <div class="quran-text my-auto mr-2">
+          <%= for surah_list <- @ayahs_right do %>
+            <%= for ayah <- surah_list do %>
+              <%= if is_first_ayah(ayah) do %>
+                <p class="surah-heading">
+                  <strong>
+                  <%= surah_title(ayah) %>
+                  </strong>
+                </p>
+              <%= end %>
+              <p id={get_ayah_id(ayah)} class="ayah">
+                <%= get_ayah_text(ayah) %>
+              </p>
+            <% end %>
+          <% end %>
+        </div>
+        <p class="has-text-centered mt-auto mb-2">
+          <%= @page_right %>
         </p>
-        <p class="has-text-centered mt-auto mb-2"><%= @page_right %></p>
     </div>
+  </div>
+  <div class="page-controls mx-auto">
+    <p>
+      <%= link "Next", to: Routes.text_path(@conn, :show_page, get_next_page_no(@page_no)) %> |
+      <%= link "Prev", to: Routes.text_path(@conn, :show_page, get_prev_page_no(@page_no)) %>
+    </p>
   </div>
 </div>

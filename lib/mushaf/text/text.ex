@@ -6499,6 +6499,109 @@ defmodule Mushaf.Text do
     {2, 1, 2, 5},
     {2, 6, 2, 16},
     {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {2, 17, 2, 24},
+    {4, 176, 5, 2}, ##########################
+    {4, 176, 5, 2}, ##########################
+    {4, 176, 5, 2}, ##########################
   ]
 
   defp full_text, do: @full_text
@@ -6512,14 +6615,20 @@ defmodule Mushaf.Text do
   end
 
   def acc_page_ayahs(end_surah, end_ayah_no, start_surah, start_ayah_no, ayah_list) do
-  	case end_surah do
-      start_surah -> Enum.at(full_text(), start_surah - 1) |> Enum.slice(start_ayah_no - 1, end_ayah_no - start_ayah_no + 1)
-      _ -> acc_page_ayahs(
-          end_surah,
-          end_ayah_no,
-          start_surah + 1,
-          0,
-          (full_text()[start_surah - 1] |> Enum.slice(start_ayah_no, Enum.length(start_surah))) ++ ayah_list)
+  	if end_surah == start_surah do
+      this_surah = Enum.at(full_text(), start_surah - 1) |> Enum.slice(start_ayah_no - 1, end_ayah_no - start_ayah_no + 1)
+      # this is backwards (we prepend the next surah),
+      # but prepending to list data structure is significantly faster
+      # we reverse after this function returns
+      [this_surah | ayah_list]
+    else
+      acc_page_ayahs(
+        end_surah,
+        end_ayah_no,
+        start_surah + 1,
+        1,
+        [(Enum.at(full_text(), start_surah - 1) |> Enum.slice(start_ayah_no - 1, length(Enum.at(full_text(), start_surah-1)))) | ayah_list]
+      )
     end
   end
 
@@ -6532,13 +6641,51 @@ defmodule Mushaf.Text do
     end
   end
 
+  def arabicize_number(ayah_no) do
+    number_list = [
+      "٠",
+      "١",
+      "٢",
+      "٣",
+      "٤",
+      "٥",
+      "٦",
+      "٧",
+      "٨",
+      "٩",
+    ]
+    number_digits = Integer.digits(ayah_no)
+    Enum.join(Enum.map(number_digits, fn x -> Enum.at(number_list, x) end), "")
+  end
+
+  def clean_ayah(ayah) do
+    ayah_number = arabicize_number(elem(ayah, 1))
+    ayah_number_string = "﴿#{ayah_number}﴾"
+    full_ayah = elem(ayah, 2) <> ayah_number_string
+    put_elem(ayah, 2, full_ayah)
+  end
+
   def get_page_ayahs(page_no) do
-    # page_no_int = Integer.parse(page_no)
     {start_surah, start_ayah_no, end_surah, end_ayah_no} = Enum.at(uthmani_page_ayah_list(), page_no - 1)
 
     # add up the ayahs!
-    page_ayah_tuple_list = acc_page_ayahs(end_surah, end_ayah_no, start_surah, start_ayah_no, [])
-    page_ayah_list = Enum.map(page_ayah_tuple_list, fn x -> elem(x, 2) end)
+    # returns a list of lists, each inner list is a surah
+    page_ayah_surahs_list_reverse = acc_page_ayahs(end_surah, end_ayah_no, start_surah, start_ayah_no, [])
+    page_ayah_surahs_list = Enum.reverse(page_ayah_surahs_list_reverse)
+
+    page_ayah_list = Enum.map(
+        # iterate over the list of lists
+        page_ayah_surahs_list,
+        fn surah_list ->
+          # iterate over ayahs in each surah
+          Enum.map(
+            surah_list,
+            fn ayah ->
+              clean_ayah(ayah)
+            end
+          )
+          end
+    )
     page_ayah_list
   end
 end
