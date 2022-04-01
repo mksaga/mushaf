@@ -13,8 +13,8 @@ defmodule MushafWeb.TextView do
   end
 
   def surah_title(ayah) do
-    # TODO: use a map defined in Text context
-    "سورة"
+    surah_no = elem(ayah, 0)
+    "سورة " <> Text.get_surah_name(surah_no)
   end
 
   def surah_starts_with_basmalah(ayah) do
