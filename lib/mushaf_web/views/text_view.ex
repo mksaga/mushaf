@@ -17,6 +17,11 @@ defmodule MushafWeb.TextView do
     "سورة"
   end
 
+  def surah_starts_with_basmalah(ayah) do
+    surah_no = elem(ayah, 0)
+    surah_no != 9 and surah_no != 1
+  end
+
   def get_ayah_text(ayah) do
     ayah_text = elem(ayah, 2)
     ayah_number = elem(ayah, 1)
