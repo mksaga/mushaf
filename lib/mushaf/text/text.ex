@@ -6615,14 +6615,20 @@ defmodule Mushaf.Text do
   end
 
   def acc_page_ayahs(end_surah, end_ayah_no, start_surah, start_ayah_no, ayah_list) do
-  	case end_surah do
-      start_surah -> Enum.at(full_text(), start_surah - 1) |> Enum.slice(start_ayah_no - 1, end_ayah_no - start_ayah_no + 1)
-      _ -> acc_page_ayahs(
-          end_surah,
-          end_ayah_no,
-          start_surah + 1,
-          0,
-          (full_text()[start_surah - 1] |> Enum.slice(start_ayah_no, Enum.length(start_surah))) ++ ayah_list)
+  	if end_surah == start_surah do
+      this_surah = Enum.at(full_text(), start_surah - 1) |> Enum.slice(start_ayah_no - 1, end_ayah_no - start_ayah_no + 1)
+      # this is backwards (we prepend the next surah),
+      # but prepending to list data structure is significantly faster
+      # we reverse after this function returns
+      [this_surah | ayah_list]
+    else
+      acc_page_ayahs(
+        end_surah,
+        end_ayah_no,
+        start_surah + 1,
+        1,
+        [(Enum.at(full_text(), start_surah - 1) |> Enum.slice(start_ayah_no - 1, length(Enum.at(full_text(), start_surah-1)))) | ayah_list]
+      )
     end
   end
 
