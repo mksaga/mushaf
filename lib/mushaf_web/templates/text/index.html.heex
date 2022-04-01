@@ -11,9 +11,11 @@
                   <%= surah_title(ayah) %>
                   </strong>
                 </p>
-                <p class="basmalah">
-                  بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ
-                </p>
+                <%= if surah_starts_with_basmalah(ayah) do %>
+                  <p class="basmalah">
+                    بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ
+                  </p>
+                <% end %>
                 <p id={get_ayah_id(ayah)} class="ayah">
                   <%= get_ayah_text(ayah) %>
                 </p>
