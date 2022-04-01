@@ -3,23 +3,52 @@
   <div class="mushaf-spread mx-auto">
     <div class="mushaf-page">
         <div class="quran-text my-auto mr-2">
-          <%= for ayah <- @ayahs_left do %>
-            <p id={get_ayah_id(ayah)} class="ayah">
-              <%= get_ayah_text(ayah) %>
-            </p>
+          <%= for surah_list <- @ayahs_left do %>
+            <%= for ayah <- surah_list do %>
+              <%= if is_first_ayah(ayah) do %>
+                <p class="surah-heading">
+                  <strong>
+                  <%= surah_title(ayah) %>
+                  </strong>
+                </p>
+                <p class="basmalah">
+                  بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ
+                </p>
+                <p id={get_ayah_id(ayah)} class="ayah">
+                  <%= get_ayah_text(ayah) %>
+                </p>
+              <%= else %>
+                <p id={get_ayah_id(ayah)} class="ayah">
+                  <%= get_ayah_text(ayah) %>
+                </p>
+              <% end %>
+            <% end %>
           <% end %>
         </div>
-        <p class="has-text-centered mt-auto mb-2"><%= @page_left %></p>
+        <p class="has-text-centered mt-auto mb-2">
+          <%= @page_left %>
+        </p>
     </div>
     <div class="mushaf-page">
         <div class="quran-text my-auto mr-2">
-          <%= for ayah <- @ayahs_right do %>
-            <p id={get_ayah_id(ayah)} class="ayah">
-              <%= get_ayah_text(ayah) %>
-            </p>
+          <%= for surah_list <- @ayahs_right do %>
+            <%= for ayah <- surah_list do %>
+              <%= if is_first_ayah(ayah) do %>
+                <p class="surah-heading">
+                  <strong>
+                  <%= surah_title(ayah) %>
+                  </strong>
+                </p>
+              <%= end %>
+              <p id={get_ayah_id(ayah)} class="ayah">
+                <%= get_ayah_text(ayah) %>
+              </p>
+            <% end %>
           <% end %>
         </div>
-        <p class="has-text-centered mt-auto mb-2"><%= @page_right %></p>
+        <p class="has-text-centered mt-auto mb-2">
+          <%= @page_right %>
+        </p>
     </div>
   </div>
   <div class="page-controls mx-auto">
