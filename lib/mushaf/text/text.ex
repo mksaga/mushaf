@@ -6660,9 +6660,8 @@ defmodule Mushaf.Text do
 
   def clean_ayah(ayah) do
     ayah_number = arabicize_number(elem(ayah, 1))
-    ayah_number_string = "۝ #{ayah_number}"
-    ayah_number_string1 = "(#{ayah_number})"
-    full_ayah = elem(ayah, 2) <> ayah_number_string1
+    ayah_number_string = "﴿#{ayah_number}﴾"
+    full_ayah = elem(ayah, 2) <> ayah_number_string
     put_elem(ayah, 2, full_ayah)
   end
 
