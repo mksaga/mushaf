@@ -22,14 +22,14 @@ defmodule MushafWeb.Router do
   scope "/", MushafWeb do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
 
-    get "/users/register", UserRegistrationController, :new
-    post "/users/register", UserRegistrationController, :create
-    get "/users/log_in", UserSessionController, :new
-    post "/users/log_in", UserSessionController, :create
-    get "/users/reset_password", UserResetPasswordController, :new
-    post "/users/reset_password", UserResetPasswordController, :create
-    get "/users/reset_password/:token", UserResetPasswordController, :edit
-    put "/users/reset_password/:token", UserResetPasswordController, :update
+    get "/register", UserRegistrationController, :new
+    post "/register", UserRegistrationController, :create
+    get "/login", UserSessionController, :new
+    post "/login", UserSessionController, :create
+    get "/reset_password", UserResetPasswordController, :new
+    post "reset_password", UserResetPasswordController, :create
+    get "/reset_password/:token", UserResetPasswordController, :edit
+    put "/reset_password/:token", UserResetPasswordController, :update
   end
 
   scope "/", MushafWeb do
@@ -43,7 +43,7 @@ defmodule MushafWeb.Router do
   scope "/", MushafWeb do
     pipe_through [:browser]
 
-    delete "/users/log_out", UserSessionController, :delete
+    delete "/logout", UserSessionController, :delete
     get "/users/confirm", UserConfirmationController, :new
     post "/users/confirm", UserConfirmationController, :create
     get "/users/confirm/:token", UserConfirmationController, :edit
