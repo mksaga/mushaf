@@ -25,20 +25,58 @@ h1 {
   padding-bottom: 0;
 }
 
+.navbar {
+  height: 5vh;
+}
+
 .container {
   width: 100vw;
-  height: 100vh;
+  height: 95vh;
+}
+
+.centered-form {
+  margin-left: auto;
+  margin-right: auto;
+  width: 70vw;
+}
+
+.input-field {
+  width: 70vw;
+}
+
+.checkbox-with-label {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+
+.form-checkbox {
+  flex-shrink: 1;
+}
+.form-fields {
+  display: flex;
+  flex-direction: column;
 }
 
 .basmalah {
   text-align: center;
 }
 
-.mushaf-container {
+.full-page {
+  height: 95vh;
   width: 100vw;
-  height: 90vh;
+}
+
+.login-helper-links {
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
+  margin-top: 0.25rem;
+}
+
+.mushaf-container {
+  width: 100vw;
   display: flex;
   flex-direction: column;
 }
@@ -65,7 +103,7 @@ h1 {
 }
 
 .surah-heading {
-  background-color: aquamarine;
+  background-color: #E2F3E4;
   border: 2px solid green;
   text-align: center;
 }
@@ -75,6 +113,10 @@ h1 {
 }
 
 @media screen and (min-width: 800px) {
+
+  .input-field {
+    width: 30vw;
+  }
   .mushaf-page {
     width: 45vw;
     height: 80vh;
@@ -85,6 +127,11 @@ h1 {
   .mushaf-spread {
     display: flex;
     flex-direction: row;
+    max-width: 1000px;
+  }
+
+  .centered-form {
+    width: 30vw;
   }
 }
 
