@@ -1,10 +1,41 @@
-<ul>
-<%= if @current_user do %>
-  <li><%= @current_user.email %></li>
-  <li><%= link "Settings", to: Routes.user_settings_path(@conn, :edit) %></li>
-  <li><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete %></li>
-<% else %>
-  <li><%= link "Register", to: Routes.user_registration_path(@conn, :new) %></li>
-  <li><%= link "Log in", to: Routes.user_session_path(@conn, :new) %></li>
-<% end %>
-</ul>
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href={Routes.page_path(@conn, :index)}>
+      <img src={Routes.static_path(@conn, "/images/geometric-tile.svg")} width="40" height="40">
+      <p class="title is-5">MUSHAF</p>
+    </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        Home
+      </a>
+
+      <a class="navbar-item">
+        Documentation
+      </a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <%= if @current_user do %>
+            <p class="button is-white navbar-item mr-2"><%= @current_user.username %></p>
+            <%= link "Settings", to: Routes.user_settings_path(@conn, :edit), class: "button" %>
+            <p class="button is-white"><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete %></p>
+          <% else %>
+            <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "button is-info is-light" %>
+            <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "button is-primary is-light" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

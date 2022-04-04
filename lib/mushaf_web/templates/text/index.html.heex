@@ -1,5 +1,6 @@
-<h1 class="title is-2 mx-auto">Mushaf</h1>
-<div class="mushaf-container mx-auto">
+<h1 class="title is-2 mx-auto mt-0">Mushaf</h1>
+<div class="mushaf-container mx-auto mb-0 pb-0">
+  <%= render "_page_controls.html", assigns %>
   <div class="mushaf-spread mx-auto">
     <div class="mushaf-page">
         <div class="quran-text my-auto ml-2 mr-2">
@@ -53,10 +54,5 @@
         </p>
     </div>
   </div>
-  <div class="page-controls mx-auto">
-    <p>
-      <%= link "Next", to: Routes.text_path(@conn, :show_page, get_next_page_no(@page_no)) %> |
-      <%= link "Prev", to: Routes.text_path(@conn, :show_page, get_prev_page_no(@page_no)) %>
-    </p>
-  </div>
+  <%= render "_page_controls.html", assigns %>
 </div>
