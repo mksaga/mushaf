@@ -67,8 +67,6 @@ defmodule MushafWeb.Router do
 
     get "/", PageController, :index
     get "/page/:page_no", TextController, :show_page
-    get "/:surah_no/:ayah_no", TextController, :index
-    get "/:surah_no", TextController, :index
   end
 
   # Other scopes may use custom stacks.
