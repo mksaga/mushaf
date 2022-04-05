@@ -7,6 +7,7 @@ defmodule Mushaf.Annotation do
     %Mistake{}
     |> Mistake.mark_changeset(attrs)
     |> Ecto.Changeset.put_assoc(:reader, user)
+    |> Ecto.Changeset.put_assoc(:marker, user)
     |> Repo.insert()
   end
 end
