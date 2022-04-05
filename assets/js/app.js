@@ -43,3 +43,15 @@ liveSocket.connect()
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
 
+mushafSpread = document.getElementById("mushaf-spread");
+mushafSpread.addEventListener("mouseup", event => {
+    selected = window.getSelection();
+    if (selected != null && selected != "" && selected.anchorNode == selected.focusNode) {
+    console.log("Selected: " + selected);
+    console.log("parentNodeId: " + selected.anchorNode.parentElement.id);
+    console.log("anchorNode: " + selected.anchorNode.nodeValue);
+    console.log("focusNode: " + selected.focusNode.nodeValue);
+    console.log("anchorOffset: " + selected.anchorOffset)
+    console.log("focusOffset: " + selected.focusOffset)
+    }
+});

@@ -6732,6 +6732,16 @@ defmodule Mushaf.Text do
     result
   end
 
+  def get_ayah(surah_no, ayah_no) do
+      surah = Enum.at(full_text(), surah_no - 1)
+      try do
+        ayah_entry = Enum.at(surah, ayah_no - 1)
+        elem(ayah_entry, 2)
+      rescue
+        ArgumentError -> nil
+      end
+  end
+
   def acc_page_ayahs(end_surah, end_ayah_no, start_surah, start_ayah_no, ayah_list) do
   	if end_surah == start_surah do
       this_surah = Enum.at(full_text(), start_surah - 1) |> Enum.slice(start_ayah_no - 1, end_ayah_no - start_ayah_no + 1)
