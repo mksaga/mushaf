@@ -23,9 +23,9 @@ defmodule Mushaf.Mistake do
   end
 
   defp validate_start_index(changeset) do
-    surah_no = fetch_change(changeset, :surah_no)
-    ayah_no = fetch_change(changeset, :ayah_no)
-    start_index = fetch_change(changeset, :start_index)
+    surah_no = get_field(changeset, :surah_no)
+    ayah_no = get_field(changeset, :ayah_no)
+    start_index = get_field(changeset, :start_index)
     ayah_text = Text.get_ayah(surah_no, ayah_no)
     if ayah_text != nil do
       if String.at(ayah_text, start_index) != nil do
@@ -40,9 +40,9 @@ defmodule Mushaf.Mistake do
   end
 
   defp validate_end_index(changeset) do
-    surah_no = fetch_change(changeset, :surah_no)
-    ayah_no = fetch_change(changeset, :ayah_no)
-    end_index = fetch_change(changeset, :end_index)
+    surah_no = get_field(changeset, :surah_no)
+    ayah_no = get_field(changeset, :ayah_no)
+    end_index = get_field(changeset, :end_index)
     ayah_text = Text.get_ayah(surah_no, ayah_no)
     if ayah_text != nil do
       if String.at(ayah_text, end_index) != nil do
