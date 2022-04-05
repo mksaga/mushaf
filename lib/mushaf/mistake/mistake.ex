@@ -12,6 +12,7 @@ defmodule Mushaf.Mistake do
 
     # p128 in Pragmatic Phoenix: how to associate mistake to user
     belongs_to :reader, Mushaf.Accounts.User
+    belongs_to :marker, Mushaf.Accounts.User
 
     timestamps()
   end
