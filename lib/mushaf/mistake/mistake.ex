@@ -10,6 +10,7 @@ defmodule Mushaf.Mistake do
     field :end_index, :integer
     field :type, Ecto.Enum, values: [:tajweed, :memorization]
 
+    # p128 in Pragmatic Phoenix: how to associate mistake to user
     belongs_to :reader, Mushaf.Accounts.User
 
     timestamps()
