@@ -2,7 +2,7 @@
 <div class="mushaf-container mx-auto mb-0 pb-0">
   <%= render "_page_controls.html", assigns %>
   <div class="mushaf-spread mx-auto" id="mushaf-spread">
-    <div class="mushaf-page">
+    <div class="mushaf-page page-left">
         <div class="quran-text my-auto ml-2 mr-2">
           <%= for surah_list <- @ayahs_left do %>
             <%= for ayah <- surah_list do %>
@@ -32,7 +32,7 @@
           <%= @page_left %>
         </p>
     </div>
-    <div class="mushaf-page">
+    <div class="mushaf-page page-right">
         <div class="quran-text my-auto ml-2 mr-2">
           <%= for surah_list <- @ayahs_right do %>
             <%= for ayah <- surah_list do %>

@@ -26,7 +26,7 @@ h1 {
 }
 
 .navbar {
-  height: 5vh;
+  // height: 5vh;
 }
 
 .container {
@@ -114,6 +114,9 @@ h1 {
 }
 
 @media screen and (min-width: 800px) {
+  .centered-form {
+    width: 30vw;
+  }
 
   .input-field {
     width: 30vw;
@@ -131,8 +134,14 @@ h1 {
     max-width: 1000px;
   }
 
-  .centered-form {
-    width: 30vw;
+  .page-right {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+  }
+  
+  .page-left {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
   }
 }
 
