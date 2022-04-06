@@ -17,13 +17,13 @@
                     بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ
                   </p>
                 <% end %>
-                <p id={get_ayah_id(ayah)} class="ayah">
+                <span id={get_ayah_id(ayah)} class="ayah">
                   <%= get_ayah_text(ayah) %>
-                </p>
+                </span>
               <%= else %>
-                <p id={get_ayah_id(ayah)} class="ayah">
+                <span id={get_ayah_id(ayah)} class="ayah">
                   <%= get_ayah_text(ayah) %>
-                </p>
+                </span>
               <% end %>
             <% end %>
           <% end %>
@@ -43,9 +43,9 @@
                   </strong>
                 </p>
               <%= end %>
-              <p id={get_ayah_id(ayah)} class="ayah">
+              <span id={get_ayah_id(ayah)} class="ayah">
                 <%= get_ayah_text(ayah) %>
-              </p>
+              </span>
             <% end %>
           <% end %>
         </div>
