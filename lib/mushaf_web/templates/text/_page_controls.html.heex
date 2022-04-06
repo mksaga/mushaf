@@ -1,6 +1,6 @@
 <div class="page-controls mx-auto">
     <p>
-      <%= link "Next", to: Routes.text_path(@conn, :show_page, get_next_page_no(@page_no)) %> |
-      <%= link "Prev", to: Routes.text_path(@conn, :show_page, get_prev_page_no(@page_no)) %>
+      <%= link "← Next", to: Routes.text_path(@conn, :show_page, get_next_page_no(@page_no)) %> |
+      <%= link "Prev →", to: Routes.text_path(@conn, :show_page, get_prev_page_no(@page_no)) %>
     </p>
 </div>
