@@ -12,14 +12,14 @@ defmodule Mushaf.Codex do
   def create_changeset(codex, attrs) do
     codex
     |> cast(attrs, [:script, :most_recent_page])
-    |> validate_most_recent_page(changeset)
+    |> validate_most_recent_page()
   end
 
   defp validate_most_recent_page(changeset) do
     page_no = get_field(changeset, :most_recent_page)
     script = get_field(changeset, :script)
     case script do
-      :uthamni ->
+      :uthmani ->
         if page_no > 0 and page_no < 605 do
           changeset
         else
