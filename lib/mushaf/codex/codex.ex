@@ -11,6 +11,21 @@ defmodule Mushaf.Codex do
 
   def create_changeset(codex, attrs) do
     codex
-    |> cast(attrs, [:script])
+    |> cast(attrs, [:script, :most_recent_page])
+    |> validate_most_recent_page(changeset)
+  end
+
+  defp validate_most_recent_page(changeset) do
+    page_no = get_field(changeset, :most_recent_page)
+    script = get_field(changeset, :script)
+    case script do
+      :uthamni ->
+        if page_no > 0 and page_no < 605 do
+          changeset
+        else
+          add_error(changeset, :most_recent_page, "Last page is invalid!")
+        end
+      :urdu -> changeset
+    end
   end
 end
