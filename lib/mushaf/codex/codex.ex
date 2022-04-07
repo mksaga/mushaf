@@ -7,6 +7,8 @@ defmodule Mushaf.Codex do
     field :most_recent_page, :integer, default: 1
 
     belongs_to :user, Mushaf.Accounts.User
+
+    many_to_many :users_with_access, Mushaf.Accounts.User, join_through: Mushaf.CodexPermission
   end
 
   def create_changeset(codex, attrs) do

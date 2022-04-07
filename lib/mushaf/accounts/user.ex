@@ -11,6 +11,9 @@ defmodule Mushaf.Accounts.User do
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
 
+    has_many :codex, Mushaf.Codex
+    many_to_many :codex_permissions, Mushaf.Codex, join_through: Mushaf.CodexPermission
+
     timestamps()
   end
 
