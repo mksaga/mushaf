@@ -18,10 +18,12 @@ defmodule Mushaf.Codices do
     |> Repo.insert()
   end
 
-  def grant_codex_permission(codex, user_id, permission) do
-    codex
-    |> Ecto.Changeset.change()
-    |> Ecto.Changeset.put_assoc(:users_with_access, [Accounts.get_user!(user_id), permission])
-    |> Repo.update!()
-  end
+  # def grant_codex_permission(codex, user, permission) do
+  #   # loaded_codex = Repo.preload(codex, :users_with_access)
+  #   # loaded_codex
+  #   codex
+  #   |> Ecto.Changeset.change()
+  #   |> Ecto.Changeset.put_assoc(:users_with_access, [user, permission])
+  #   |> Repo.update!()
+  # end
 end
