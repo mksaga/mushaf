@@ -1,10 +1,12 @@
 defmodule Mushaf.Codex do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Nanoid
 
   schema "codices" do
     field :script, Ecto.Enum, values: [:uthmani, :urdu]
     field :most_recent_page, :integer, default: 1
+    field :nano_id, :string
 
     belongs_to :user, Mushaf.Accounts.User
   end
@@ -13,6 +15,12 @@ defmodule Mushaf.Codex do
     codex
     |> cast(attrs, [:script, :most_recent_page])
     |> validate_most_recent_page()
+    |> add_nanoid()
+  end
+
+  defp add_nanoid(changeset) do
+    changeset
+    |> put_change(:nano_id, Nanoid.generate())
   end
 
   defp validate_most_recent_page(changeset) do
