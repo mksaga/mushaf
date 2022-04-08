@@ -10,7 +10,9 @@ defmodule Mushaf.Codices do
   end
 
   def get_codices_by_user(user) do
-    Repo.get_by(Codex, user_id: user.id)
+    Codex
+    |> where([codex], codex.user_id == ^user.id)
+    |> Repo.all()
   end
 
   def get_codex!(id), do: Repo.get!(Codex, id)
