@@ -54,6 +54,8 @@ defmodule MushafWeb.Router do
     pipe_through [:browser, :require_authenticated_user]
 
     get "/mushaf/:mushaf_id/page/:page_no", CodexController, :show_page
+    get "/mushaf/new", CodexController, :new
+    post "/mushaf/new", CodexController, :create
   end
 
   # Enables the Swoosh mailbox preview in development.
