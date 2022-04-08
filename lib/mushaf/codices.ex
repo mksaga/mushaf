@@ -5,8 +5,12 @@ defmodule Mushaf.Codices do
   alias Mushaf.Codex
   alias Mushaf.Accounts
 
+  def change_codex_changeset(%Codex{} = codex, attrs \\ %{}) do
+    Codex.create_changeset(codex, attrs)
+  end
+
   def get_codices_by_user(user) do
-    Repo.get_by(Codex, user: user)
+    Repo.get_by(Codex, user_id: user.id)
   end
 
   def get_codex!(id), do: Repo.get!(Codex, id)
