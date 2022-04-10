@@ -54,7 +54,8 @@ defmodule MushafWeb.CodexController do
           page_left: page_left,
           ayahs_left: ayahs_left,
           ayahs_right: ayahs_right,
-          mushaf_id: codex_id
+          mushaf_id: codex_id,
+          mushaf_name: codex.name,
         )
     end
   end
