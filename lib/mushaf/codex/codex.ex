@@ -7,14 +7,17 @@ defmodule Mushaf.Codex do
     field :script, Ecto.Enum, values: [:uthmani, :urdu]
     field :most_recent_page, :integer, default: 1
     field :nano_id, :string
+    field :name, :string
 
     belongs_to :user, Mushaf.Accounts.User
   end
 
   def create_changeset(codex, attrs) do
     codex
-    |> cast(attrs, [:script, :most_recent_page])
+    |> cast(attrs, [:script, :name])
     |> validate_most_recent_page()
+    |> validate_required([:name])
+    |> validate_length(:name, max: 80)
     |> add_nanoid()
   end
 
