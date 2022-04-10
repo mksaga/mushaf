@@ -34,6 +34,7 @@ defmodule Mushaf.Codex do
           add_error(changeset, :most_recent_page, "Last page is invalid!")
         end
       :urdu -> changeset
+      nil -> changeset
     end
   end
 end
