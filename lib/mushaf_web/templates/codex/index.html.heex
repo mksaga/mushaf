@@ -1,0 +1,58 @@
+<h1 class="title is-2 mx-auto mt-0"><%= @mushaf_name || "Mushaf" %></h1>
+<div class="mushaf-container mx-auto mb-0 pb-0">
+  <%= render "_page_controls.html", assigns %>
+  <div class="mushaf-spread mx-auto" id="mushaf-spread">
+    <div class="mushaf-page page-left">
+        <div class="quran-text my-auto ml-2 mr-2">
+          <%= for surah_list <- @ayahs_left do %>
+            <%= for ayah <- surah_list do %>
+              <%= if is_first_ayah(ayah) do %>
+                <p class="surah-heading">
+                  <strong>
+                  <%= surah_title(ayah) %>
+                  </strong>
+                </p>
+               <%= if surah_starts_with_basmalah(ayah) do %>
+                  <p class="basmalah">
+                    بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ
+                  </p>
+                <% end %>
+                <span id={get_ayah_id(ayah)} class="ayah">
+                  <%= get_ayah_text(ayah) %>
+                </span>
+              <%= else %>
+                <span id={get_ayah_id(ayah)} class="ayah">
+                  <%= get_ayah_text(ayah) %>
+                </span>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        <p class="has-text-centered pt-auto mb-2">
+          <%= @page_left %>
+        </p>
+    </div>
+    <div class="mushaf-page page-right">
+        <div class="quran-text my-auto ml-2 mr-2">
+          <%= for surah_list <- @ayahs_right do %>
+            <%= for ayah <- surah_list do %>
+              <%= if is_first_ayah(ayah) do %>
+                <p class="surah-heading">
+                  <strong>
+                  <%= surah_title(ayah) %>
+                  </strong>
+                </p>
+              <%= end %>
+              <span id={get_ayah_id(ayah)} class="ayah">
+                <%= get_ayah_text(ayah) %>
+              </span>
+            <% end %>
+          <% end %>
+        </div>
+        <p class="has-text-centered pt-auto mb-2">
+          <%= @page_right %>
+        </p>
+    </div>
+  </div>
+  <%= render "_page_controls.html", assigns %>
+</div>
