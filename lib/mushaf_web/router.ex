@@ -50,6 +50,14 @@ defmodule MushafWeb.Router do
     post "/users/confirm/:token", UserConfirmationController, :update
   end
 
+  scope "/", MushafWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    get "/mushaf/:mushaf_id/page/:page_no", CodexController, :show_page
+    get "/mushaf/new", CodexController, :new
+    post "/mushaf/new", CodexController, :create
+  end
+
   # Enables the Swoosh mailbox preview in development.
   #
   # Note that preview only shows emails that were sent by the same

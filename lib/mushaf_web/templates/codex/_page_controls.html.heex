@@ -1,0 +1,6 @@
+<div class="page-controls mx-auto">
+    <p>
+      <%= link "← Next", to: Routes.codex_path(@conn, :show_page, @conn.assigns.mushaf_id, get_next_page_no(@page_no)) %> |
+      <%= link "Prev →", to: Routes.codex_path(@conn, :show_page, @conn.assigns.mushaf_id, get_prev_page_no(@page_no)) %>
+    </p>
+</div>

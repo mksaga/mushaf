@@ -38,6 +38,7 @@ h1 {
   margin-left: auto;
   margin-right: auto;
   width: 70vw;
+  margin-bottom: 5vh;
 }
 
 .input-field {
@@ -113,14 +114,51 @@ h1 {
   display: inline;
 }
 
+.mushaf-create-spread {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mushaf-image {
+  max-width: 60vw;
+  max-height: 50vh;
+}
+
 @media screen and (min-width: 800px) {
   .centered-form {
-    width: 30vw;
+    width: 50vw;
+  }
+
+  .form-fields {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .input-field {
     width: 30vw;
   }
+
+  .mushaf-image {
+    max-width: 250px;
+    max-height: 390px;
+  }
+
+  .mushaf-create-spread {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .mushaf-page {
     width: 45vw;
     height: 80vh;

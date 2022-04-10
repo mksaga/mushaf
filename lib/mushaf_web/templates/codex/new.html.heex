@@ -1,0 +1,32 @@
+<div class="full-page mt-0">
+  <div class="centered-form">
+    <h1 class="title is-3">Create a Mushaf</h1>
+
+    <.form let={f} for={@conn} action={Routes.codex_path(@conn, :create)} as={:codex}>
+      <div class="form-fields">
+        <%= text_input f, :name, required: true, class: "mb-2 input input-field mx-auto", type: "text", placeholder: "Mushaf Name" %>
+
+        <div class="mushaf-create-spread">
+            <div class="is-flex is-flex-direction-column is-align-items-center">
+                <img src={Routes.static_path(@conn, "/images/mushaf_medina.jpeg")} class="mushaf-image">
+                <div class="control mt-2">
+                    <%= radio_button f, :script, "uthmani", name: "script_uthmani" %>
+                    <%= label f, :script, "Uthmani", class: "radio", name: "script_uthmani" %>
+                </div>
+            </div>
+            <div class="is-flex is-flex-direction-column is-align-items-center">
+                <img src={Routes.static_path(@conn, "/images/mushaf_urdu_13.jpeg")} class="mushaf-image">
+                <div class="control mt-2">
+                    <%= radio_button f, :script, "urdu", name: "script_urdu" %>
+                    <%= label f, :script, "Urdu", class: "radio", name: "script_urdu" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="mx-auto">
+          <%= submit "Create Mushaf", class: "button is-primary mb-5" %>
+        </div>
+      </div>
+    </.form>
+  </div>
+</div>
