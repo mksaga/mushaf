@@ -1,7 +1,9 @@
 defmodule Mushaf.Codex do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query
   alias Nanoid
+  alias Mushaf.{Repo, CodexObserver}
 
   schema "codices" do
     field :script, Ecto.Enum, values: [:uthmani, :urdu]
@@ -21,6 +23,15 @@ defmodule Mushaf.Codex do
     |> validate_required([:name])
     |> validate_length(:name, max: 80)
     |> add_nanoid()
+  end
+
+  def add_observer_changeset(codex, user) do
+    prev_observers = codex.observers
+    new_observers = [user | prev_observers]
+    codex
+    |> change()
+    |> put_assoc(:observers, new_observers)
+    |> Repo.update()
   end
 
   defp add_nanoid(changeset) do
