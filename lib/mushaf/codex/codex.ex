@@ -10,6 +10,8 @@ defmodule Mushaf.Codex do
     field :name, :string
 
     belongs_to :user, Mushaf.Accounts.User
+    many_to_many :observers, Mushaf.Accounts.User, join_through: Mushaf.CodexObserver, join_keys: [codex_id: :id, observer_id: :id]
+    timestamps()
   end
 
   def create_changeset(codex, attrs) do
