@@ -11,6 +11,8 @@ defmodule Mushaf.Accounts.User do
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
 
+    many_to_many :external_codices, Mushaf.Codex, join_through: Mushaf.CodexObserver, join_keys: [observer_id: :id, codex_id: :id]
+
     timestamps()
   end
 
