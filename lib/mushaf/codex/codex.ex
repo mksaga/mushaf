@@ -25,13 +25,9 @@ defmodule Mushaf.Codex do
     |> add_nanoid()
   end
 
-  def add_observer_changeset(codex, user) do
-    prev_observers = codex.observers
-    new_observers = [user | prev_observers]
-    codex
-    |> change()
-    |> put_assoc(:observers, new_observers)
-    |> Repo.update()
+  def add_observer(codex, user) do
+    %CodexObserver{}
+    |> CodexObserver.link_observer(codex, user)
   end
 
   defp add_nanoid(changeset) do
