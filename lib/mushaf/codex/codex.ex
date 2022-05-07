@@ -1,9 +1,8 @@
 defmodule Mushaf.Codex do
   use Ecto.Schema
   import Ecto.Changeset
-  import Ecto.Query
   alias Nanoid
-  alias Mushaf.{Repo, CodexObserver}
+  alias Mushaf.CodexObserver
 
   schema "codices" do
     field :script, Ecto.Enum, values: [:uthmani, :urdu]
