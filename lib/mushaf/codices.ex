@@ -15,6 +15,10 @@ defmodule Mushaf.Codices do
     |> Repo.all()
   end
 
+  def add_observer(codex, observer) do
+    Codex.add_observer(codex, observer)
+  end
+
   def get_codex!(id), do: Repo.get!(Codex, id)
 
   def get_user_codex(codex_nano_id, user) do
