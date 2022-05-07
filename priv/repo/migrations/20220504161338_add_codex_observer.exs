@@ -6,5 +6,7 @@ defmodule Mushaf.Repo.Migrations.AddCodexObserver do
       add :codex_id, references(:codices), primary_key: true
       add :observer_id, references(:users), primary_key: true
     end
+
+    create unique_index(:codex_observer, [:codex_id, :observer_id])
   end
 end
