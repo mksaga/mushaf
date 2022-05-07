@@ -27,6 +27,34 @@ defmodule MushafWeb.CodexController do
     end
   end
 
+  def settings(conn, %{"mushaf_id" => codex_id}, current_user) do
+    result = Codices.get_user_codex(codex_id, current_user)
+    case result do
+      nil ->
+        conn
+        |> put_flash(:error, "That Mushaf does not exist!")
+        |> redirect(to: Routes.page_path(conn, :index))
+      codex ->
+        # Retrieve other users who have permission
+        query = from co in CodexObserver, select: co, where: co.codex_id == ^codex.id
+        codex_observers = Repo.all(query)
+        shared_with = Enum.map(
+          codex_observers,
+          fn codex_observer ->
+            Repo.preload(codex_observer, :observer).observer
+          end)
+
+
+        mushaf_name: codex.name
+        render(
+          conn,
+          "settings.html",
+          mushaf_name: mushaf_name,
+          shared_with: shared_with
+        )
+    end
+  end
+
   def show_page(conn, %{"mushaf_id" => codex_id, "page_no" => page_no}, current_user) do
     result = Codices.get_user_codex(codex_id, current_user)
 
