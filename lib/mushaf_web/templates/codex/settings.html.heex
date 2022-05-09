@@ -1,0 +1,17 @@
+<div class="full-page mt-0">
+  <div class="centered-form">
+    <h1 class="title is-3">Settings</h1>
+        <h5 class="title is-5">
+            Shared With
+        </h5>
+
+        <div class="is-flex is-flex-direction-row">
+        <input class="input mb-3" type="text" placeholder="Share with username" >
+        <button class="button is-success ml-2">Share</button>
+        </div>
+
+        <%= for member <- @shared_with do %>
+            <%= member_layout member %>
+        <% end %>
+  </div>
+</div>
