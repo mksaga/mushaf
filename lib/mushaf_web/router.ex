@@ -55,6 +55,8 @@ defmodule MushafWeb.Router do
 
     get "/mushaf/:mushaf_id/page/:page_no", CodexController, :show_page
     get "/mushaf/:mushaf_id/settings", CodexController, :settings
+    post "/mushaf/:mushaf_id/settings", CodexObserverController, :new
+    delete "/mushaf/:mushaf_id/settings", CodexObserverController, :delete
     get "/mushaf/new", CodexController, :new
     post "/mushaf/new", CodexController, :create
   end
