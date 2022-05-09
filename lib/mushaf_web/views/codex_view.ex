@@ -1,5 +1,6 @@
 defmodule MushafWeb.CodexView do
   use MushafWeb, :view
+  use Phoenix.Component
   alias Mushaf.Text
 
   def get_ayah_id(ayah) do
@@ -26,7 +27,9 @@ defmodule MushafWeb.CodexView do
     ayah_text = elem(ayah, 2)
     ayah_number = elem(ayah, 1)
     surah_number = elem(ayah, 0)
-    if ayah_number == 1 and surah_number != 1 do
+    # Exclude al-Fatihah and at-Tawbah
+    if ayah_number == 1 and surah_number != 1 and surah_number != 9 do
+      # Our text includes the basmalah at start of every ayah
       {basmalah, first_ayah} = String.split_at(ayah_text, 23)
       first_ayah
     else
@@ -41,4 +44,37 @@ defmodule MushafWeb.CodexView do
   def get_next_page_no(page_no) do
     min(604, page_no + 1)
   end
+
+  # TODO: add next and prev spread_page_no?
+
+  def member_layout(assigns) do
+    ~H"""
+    <div title="My div">
+      <.member_render member={assigns}/>
+    </div>
+    """
+  end
+
+  def member_render(assigns) do
+    ~H"""
+    <div class="level">
+      <div class="level-left">
+      <p><%= shared_with(@member) %></p>
+      </div>
+      <div class="level-right">
+        <button class="button is-danger is-small is-light">Remove</button>
+      </div>
+    </div>
+    """
+  end
+
+  defp shared_with(member) do
+    member.username
+    <> " ("
+    <> member.first_name
+    <> " "
+    <> member.last_name
+    <> ")"
+  end
+
 end
