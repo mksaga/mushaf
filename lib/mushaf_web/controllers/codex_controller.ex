@@ -1,9 +1,8 @@
 defmodule MushafWeb.CodexController do
   use MushafWeb, :controller
   require Integer
-  alias Mushaf.Codex
-  alias Mushaf.Codices
-  alias Mushaf.Text
+  alias Mushaf.{Codex, CodexObserver, Codices, Repo, Text}
+  import Ecto.Query
 
   def action(conn, _) do
     args = [conn, conn.params, conn.assigns.current_user]
@@ -44,8 +43,8 @@ defmodule MushafWeb.CodexController do
             Repo.preload(codex_observer, :observer).observer
           end)
 
+        mushaf_name = codex.name
 
-        mushaf_name: codex.name
         render(
           conn,
           "settings.html",
