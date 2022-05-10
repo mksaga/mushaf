@@ -45,12 +45,13 @@ defmodule MushafWeb.CodexController do
 
         mushaf_name = codex.name
 
-        render(
-          conn,
-          "settings.html",
-          mushaf_name: mushaf_name,
-          shared_with: shared_with
-        )
+        conn
+        |> assign(:mushaf_name, mushaf_name)
+        |> assign(:mushaf_id, codex.nano_id)
+        |> assign(:page_no, codex.most_recent_page)
+        |> assign(:shared_with, shared_with)
+        |> render("settings.html")
+
     end
   end
 
@@ -73,17 +74,15 @@ defmodule MushafWeb.CodexController do
             {page_no_int, page_no_int + 1}
           end
 
-        render(
-          conn,
-          "index.html",
-          page_no: page_no_int,
-          page_right: page_right,
-          page_left: page_left,
-          ayahs_left: ayahs_left,
-          ayahs_right: ayahs_right,
-          mushaf_id: codex_id,
-          mushaf_name: codex.name,
-        )
+        conn
+        |> assign(:page_no, page_no_int)
+        |> assign(:page_right, page_right)
+        |> assign(:page_left, page_left)
+        |> assign(:ayahs_left, ayahs_left)
+        |> assign(:ayahs_right, ayahs_right)
+        |> assign(:mushaf_id, codex.id)
+        |> assign(:mushaf_name, codex.name)
+        |> render("index.html")
     end
   end
 end
