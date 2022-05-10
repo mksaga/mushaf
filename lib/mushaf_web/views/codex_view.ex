@@ -47,27 +47,6 @@ defmodule MushafWeb.CodexView do
 
   # TODO: add next and prev spread_page_no?
 
-  def member_layout(assigns) do
-    ~H"""
-    <div title="My div">
-      <.member_render member={assigns}/>
-    </div>
-    """
-  end
-
-  def member_render(assigns) do
-    ~H"""
-    <div class="level">
-      <div class="level-left">
-      <p><%= shared_with(@member) %></p>
-      </div>
-      <div class="level-right">
-        <button class="button is-danger is-small is-light">Remove</button>
-      </div>
-    </div>
-    """
-  end
-
   defp shared_with(member) do
     member.username
     <> " ("
