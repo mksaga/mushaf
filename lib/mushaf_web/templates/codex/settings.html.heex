@@ -1,17 +1,13 @@
 <div class="full-page mt-0">
   <div class="centered-form">
-    <h1 class="title is-3">Settings</h1>
-        <h5 class="title is-5">
+    <%= link "← Back to Mushaf", to: Routes.codex_path(@conn, :show_page, @conn.assigns.mushaf_id, @page_no) %>
+    <h1 class="title is-4">Settings</h1>
+        <h4 class="title is-5">
             Shared With
-        </h5>
-
-        <div class="is-flex is-flex-direction-row">
-        <input class="input mb-3" type="text" placeholder="Share with username" >
-        <button class="button is-success ml-2">Share</button>
-        </div>
+        </h4>
 
         <%= for member <- @shared_with do %>
-            <%= member_layout member %>
+            <%= render "_show_member.html", conn: @conn, member: member %>
         <% end %>
   </div>
 </div>
